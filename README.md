@@ -36,8 +36,8 @@ ecommerce/
 ├── theme/                 # App responsável pelo frontend
 │   ├── static/
 │   ├── templates/
-│   │   ├── base.html
-│   │   └── home.html
+│   │   └── base.html
+│   │   
 │   │
 │   ├── views.py
 │   ├── urls.py

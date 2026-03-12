@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("", include("theme.urls")), # Rota Principal
+    path("", include("core.urls")), # Rota Principal
     path('admin/', admin.site.urls),
 ]

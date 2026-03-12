@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tailwind',
-    'theme'
+    'theme',
+    'core',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -106,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 
@@ -119,3 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+NPM_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/npm"
+NODE_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/node"

@@ -1,0 +1,21 @@
+{% load static tailwind_tags %}
+<!doctype html>
+<html lang="pt-br" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Minha Loja{% endblock %}</title>
+        {% tailwind_css %}
+        <!-- ou HTMX: <script src="https://unpkg.com/htmx.org@2"></script> -->
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body class="bg-gray-50 antialiased">
+
+        {% include "core/navbar.html" %}
+
+        <main class="min-h-screen">
+            {% block content %}{% endblock %}
+        </main>
+
+    </body>
+</html>
