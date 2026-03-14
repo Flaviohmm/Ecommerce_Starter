@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 
 def home(request):
@@ -20,3 +20,40 @@ def home(request):
         'title': 'Starter - Produtos de Qualidade com Entrega Rápida',
     }
     return render(request, "core/home.html", context)
+
+def product_list(request):
+    # Pegar todos os produtos disponíveis
+    products = Product.objects.filter(available=True).order_by('-created')
+
+    # Filtro por categoria via GET (?category=slug)
+    category_slug = request.GET.get('category')
+    if category_slug:
+        products = products.filter(category__slug=category_slug)
+
+    # Categorias para menu lateral ou filtro
+    categories = Category.objects.filter(parent__isnull=True)
+
+    context = {
+        'products': products,
+        'categories': categories,
+        'title': 'Todos os Produtos - Starter',
+    }
+
+    return render(request, 'core/product_list.html', context)
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug, available=True)
+
+    # Produtos relacionados (mesma categoria, excluindo o atual)
+    related_products = Product.objects.filter(
+        category=product.category,
+        available=True
+    ).exclude(slug=slug)[:4]
+
+    context = {
+        'product': product,
+        'related_products': related_products,
+        'title': f"{product.name}",
+    }
+
+    return render(request, 'core/product_detail.html', context)
