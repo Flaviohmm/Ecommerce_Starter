@@ -32,5 +32,12 @@ class Product(models.Model):
     def final_price(self):
         return self.discount_price or self.price
     
+    def discount_percentage(self):
+        if self.discount_price and self.price > 0:
+            desconto = self.price - self.discount_price
+            porcentagem = (desconto / self.price) * 100
+            return round(porcentagem)
+        return 0
+    
     def __str__(self):
         return self.name

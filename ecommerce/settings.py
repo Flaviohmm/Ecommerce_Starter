@@ -122,5 +122,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Configurações de MEDIA (arquivos enviados pelos usuários, como imagens de produtos)
+MEDIA_URL = '/media/'               # URL pública que vai acessar as imagens (ex: http://127.0.0.1:8000/media/...)
+MEDIA_ROOT = BASE_DIR / 'media'     # Pasta física onde as imagens são salvas no disco
+
+# Node
 NPM_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/npm"
 NODE_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/node"
