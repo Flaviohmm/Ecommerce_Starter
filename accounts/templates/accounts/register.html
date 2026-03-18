@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Cadastro{% endblock title %}
+
+{% block content %}
+    <div class="min-h-screen flex items-center justify-center bg-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-indigo-100">
+            <!-- Título -->
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-indigo-700">
+                    Cadastro
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">
+                    Crie sua conta para começar a comprar
+                </p>
+            </div>
+
+            <!-- Formulário -->
+            <form method="post" class="mt-8 space-y-6">
+                {% csrf_token %}
+
+                <!-- Mensagens de erro/sucesso do Django -->
+                {% if form.non_field_errors %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        {% for error in form.non_field_errors %}
+                            <span class="block sm:inline">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Campo Usuário -->
+                <div>
+                    <label for="{{ form.username.id_for_label}}" class="block text-sm font-medium text-indigo-600">
+                        Usuário
+                    </label>
+                    <div class="mt-1">
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.username.errors|join:" " }}</p>
+                        {% endif %}
+                    </div>
+                    <ul class="list-disc pl-5 mt-1 text-xs text-gray-500">
+                        <li>
+                            Obrigatório. 150 caracteres ou menos. Apenas letras, números e @/./+/-/_.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Campo Email -->
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-indigo-600">
+                        Email
+                    </label>
+                    <div class="mt-1">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.email.errors|join:" " }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Campo Senha -->
+                <div>
+                    <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-indigo-600">
+                        Senha
+                    </label>
+                    <div class="mt-1">
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.password1.errors|join:" " }}</p>
+                        {% endif %}
+                    </div>
+                    <ul class="list-disc pl-5 mt-2 text-xs text-gray-500 space-y-1">
+                        <li>Sua senha precisa conter pelo menos 8 caracteres.</li>
+                        <li>Sua senha não pode ser inteiramente numérica</li>
+                    </ul>
+                </div>
+
+                <!-- Confirmação de Senha -->
+                <div>
+                    <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-indigo-600">
+                        Confirmação de senha
+                    </label>
+                    <div class="mt-1">
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.password2.errors|join:" " }}</p>
+                        {% endif %}
+                    </div>
+                    <ul class="list-disc pl-5 mt-1 text-xs text-gray-500">
+                        <li>Informe a mesma senha informada anteriormente, para verificação.</li>
+                    </ul>
+                </div>
+
+                <!-- Botão Cadastrar -->
+                <div>
+                    <button
+                        type="submit"
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition transform hover:scale-105 shadow-md"
+                    >
+                        Cadastrar
+                    </button>
+                </div>
+
+                <!-- Link para login -->
+                <div class="text-center text-sm text-gray-600">
+                    Já tem conta?
+                    <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
+                        Faça o login
+                    </a>
+                </div>
+
+            </form>
+            
+        </div>
+    </div>
+{% endblock content %}
