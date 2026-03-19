@@ -19,7 +19,7 @@
                 <a href="#" class="text-gray-700 hover:text-indigo-600">Categorias</a>
                 
                 {% if user.is_authenticated %}
-                    <span>Olá, {{ user.username }}</span>
+                    <span class="text-indigo-600">Olá, {{ user.username }}</span>
                     <a href="{% url 'cart' %}" class="text-gray-700 hover:text-indigo-600 relative">
                         Carrinho
                         <span class="absolute -top-3 -right-4 bg-red-500 text-white text-xs rounded-full px-2 py-1">
