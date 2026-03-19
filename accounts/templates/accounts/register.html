@@ -40,7 +40,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                         </div>
+
                         {{ form.username }}
+                        
+                    </div>
+                    <div>
                         {% if form.username.errors %}
                             <p class="mt-1 text-sm text-red-600">{{ form.username.errors|join:" " }}</p>
                         {% endif %}
@@ -65,6 +69,8 @@
                             </svg>
                         </div>
                         {{ form.email }}
+                    </div>
+                    <div>
                         {% if form.email.errors %}
                             <p class="mt-1 text-sm text-red-600">{{ form.email.errors|join:" " }}</p>
                         {% endif %}
@@ -101,10 +107,6 @@
                             </button>
                         </div>
 
-                        {% if form.password1.errors %}
-                            <p class="mt-1 text-sm text-red-600">{{ form.password1.errors|join:" " }}</p>
-                        {% endif %}
-
                         <script>
                             document.getElementById('toggle-password').addEventListener('click', function () {
                                 const passwordInput = document.querySelector('input[name="password1"]');
@@ -122,6 +124,11 @@
                                 }
                             });
                         </script>
+                    </div>
+                    <div>
+                        {% if form.password1.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.password1.errors|join:" " }}</p>
+                        {% endif %}
                     </div>
                     <ul class="list-disc pl-5 mt-2 text-xs text-gray-500 space-y-1">
                         <li>Sua senha precisa conter pelo menos 8 caracteres.</li>

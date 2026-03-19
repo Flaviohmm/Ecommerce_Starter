@@ -130,3 +130,15 @@ MEDIA_ROOT = BASE_DIR / 'media'     # Pasta física onde as imagens são salvas 
 # Node
 NPM_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/npm"
 NODE_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/node"
+
+# === Email configuration (development) ===
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Opcional: só para deixar explícito (não é obrigatório com console)
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'no-reply@seusite.local <no-reply@seusite.local>'

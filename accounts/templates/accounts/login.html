@@ -51,6 +51,8 @@
                             </svg>
                         </div>
                         {{ form.username }}
+                    </div>
+                    <div>
                         {% if form.username.errors %}
                             <p class="mt-1 text-sm text-red-600">{{ form.username.errors|join:" " }}</p>
                         {% endif %}
@@ -87,10 +89,6 @@
                             </button>
                         </div>
 
-                        {% if form.password.errors %}
-                            <p class="mt-1 text-sm text-red-600">{{ form.password.errors|join:" " }}</p>
-                        {% endif %}
-
                         <script>
                             document.getElementById('toggle-password').addEventListener('click', function () {
                                 const passwordInput = document.querySelector('input[name="password"]');
@@ -109,8 +107,13 @@
                             });
                         </script>
                     </div>
+                    <div>
+                        {% if form.password.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.password.errors|join:" " }}</p>
+                        {% endif %}
+                    </div>
                     <div class="mt-2 text-right">
-                        <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 hover:underline">
+                        <a href="{% url 'password_reset' %}" class="text-sm text-indigo-600 hover:text-indigo-800 hover:underline">
                             Esqueceu a senha?
                         </a>
                     </div>
