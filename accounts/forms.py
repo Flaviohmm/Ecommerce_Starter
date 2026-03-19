@@ -8,7 +8,7 @@ class RegisterForm(UserCreationForm):
     email = forms.EmailField(
         required = True,
         widget = forms.EmailInput(attrs={
-            'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+            'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
             'placeholder': 'seu@email.com',
         })
     )
@@ -16,7 +16,7 @@ class RegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label ="Senha",
         widget = forms.PasswordInput(attrs={
-            'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+            'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
             'placeholder': '••••••••',
         })
     )
@@ -24,7 +24,7 @@ class RegisterForm(UserCreationForm):
     password2 = forms.CharField(
         label = "Confirmação de senha",
         widget = forms.PasswordInput(attrs={
-            'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+            'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
             'placeholder': 'Confirme sua senha',
         })
     )
@@ -34,7 +34,7 @@ class RegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         widgets = {
             'username': forms.TextInput(attrs={
-                'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+                'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
                 'placeholder': 'Digite seu usuário',
             }),
         }
@@ -43,8 +43,9 @@ class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
         label = "Usuário",
         widget = forms.TextInput(attrs={
-            'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+            'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
             'placeholder': 'Digite seu usuário',
+            'autocomplete': 'username',
             'autofocus': True,
         })
     )
@@ -52,8 +53,9 @@ class CustomLoginForm(AuthenticationForm):
     password = forms.CharField(
         label="Senha",
         widget=forms.PasswordInput(attrs={
-            'class': 'block w-full px-4 py-3 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
+            'class': 'block w-full px-4 py-3 pl-10 rounded-lg text-gray-600 bg-indigo-50 border border-indigo-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 outline-none transition',
             'placeholder': '••••••••',
+            'autocomplete': 'current-password',
         })
     )
 
