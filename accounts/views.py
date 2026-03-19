@@ -3,8 +3,9 @@ from typing import Any, Dict
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from .forms import RegisterForm, AddressForm
+from .forms import RegisterForm, AddressForm, CustomLoginForm
 from core.models import Product
 from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponse
@@ -67,3 +68,22 @@ def register(request: HttpRequest):
     else:
         form = RegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
+
+
+class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
+    authentication_form = CustomLoginForm
+    redirect_authenticated_user = True
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        remember_me = form.cleaned_data.get('remember')
+
+        if remember_me:
+            # Salva apenas o username em cookie (seguro, pois não é senha)
+            response.set_cookie('remember_username', form.cleaned_data['username'], max_age=2592000)
+        else:
+            response.delete_cookie('remember_username')
+
+        return response

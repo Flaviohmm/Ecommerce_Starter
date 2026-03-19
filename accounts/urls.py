@@ -7,10 +7,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path(
         'login/',
-        LoginView.as_view(
-            template_name='accounts/login.html', 
-            authentication_form=forms.CustomLoginForm,
-            redirect_authenticated_user=True,
+        views.CustomLoginView.as_view(
             next_page='home',
         ), 
         name='login'
