@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Categories{% endblock title %}
+
+{% block content %}
+    <section class="py-12 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-900 text-center mb-12">
+                Nossas Categorias
+            </h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                {% for category in categories %}
+                    <a 
+                        href="{% url 'category_detail' category.slug %}"
+                        class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:scale-105"
+                    >
+                        <div class="h-48 bg-linear-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                            <span class="text-6xl font-bold text-indigo-500 opacity-70">
+                                {{ category.name|slice:":1" }}
+                            </span>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold text-indigo-900 group-hover:text-indigo-700 transition">
+                                {{ category.name }}
+                            </h3>
+                            <p class="mt-2 text-sm text-gray-600">
+                                Veja todos os produtos desta categoria
+                            </p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p class="col-span-full text-center text-indigo-600 py-16 text-xl">
+                        Nenhuma categoria cadastrada ainda.
+                    </p>
+                {% endfor %}
+            </div>
+
+            <!-- Botão voltar para produtos -->
+            <div class="text-center mt-12">
+                <a 
+                    href="{% url 'product_list' %}"
+                    class="inline-block bg-indigo-600 text-white font-bold py-4 px-10 rounded-full hover:bg-indigo-700 transition transform hover:scale-105 shadow-lg"
+                >
+                    Ver todos os produtos →
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class="bg-indigo-50 py-32"/>
+{% endblock content %}
