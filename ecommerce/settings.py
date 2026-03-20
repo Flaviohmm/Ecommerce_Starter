@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@lz^7e5ou-%_nw@51nykcn#xw8v+vy4_y)u!dta5qbji4!-v9a'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -131,14 +135,16 @@ MEDIA_ROOT = BASE_DIR / 'media'     # Pasta física onde as imagens são salvas 
 NPM_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/npm"
 NODE_BIN_PATH = "/home/flavio/.nvm/versions/node/v24.14.0/bin/node"
 
-# === Email configuration (development) ===
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email configuration - Gmail SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Opcional: só para deixar explícito (não é obrigatório com console)
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'no-reply@seusite.local <no-reply@seusite.local>'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587                          # 587 para TLS (recomendado)
+EMAIL_USE_TLS = True                      # Ativa STARTTLS
+EMAIL_USE_SSL = False                     # NÃO use SSL quando TLS está ativo
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')    # Seu email Gmail completo
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Os 16 caracteres (sem espaços!)
+
+# Recomendado: email de remetente padrão
+DEFAULT_FROM_EMAIL = 'fhenrique609@gmail.com'
